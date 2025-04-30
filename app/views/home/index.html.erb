@@ -3,22 +3,26 @@
     <% @properties.find_each do |property| %> <!-- Loop through 12 items -->
       <div class="card bg-base-100 w-full shadow-sm">
         <figure class="px-10 pt-10">
-          <img
-            src="https://media.istockphoto.com/id/1319269543/photo/new-homes-on-a-quiet-street-in-raleigh-nc.jpg?s=612x612&w=0&k=20&c=qaRMP-xgYqFAXR9aTpiG0dtkyqPhJiTAovvxyG1AxvM=",
-            alt="Shoes"
-            class="rounded-xl" />
+            <div class="carousel rounded-box w-64">
+            <div class="carousel-item w-full">
+              <%= image_tag property.images.first, class: "w-full"%>
+            </div>
+            <div class="carousel-item w-full">
+              <%=image_tag property.images.last, class: "w-full"%>
+            </div>
+          </div>
         </figure>
         <div class="card-body items-center text-center">
           <h2 class="card-title"><%=property.city%>, <%=property.country%></h2>
           <p id="hosted-by" ><em><strong>Hosted</strong></em> by Gobinda</p>
           <p id="date-time"><%=property.updated_at.in_time_zone.strftime("%B %d, %Y %I:%M %p")%></p>
           <div class="price-rating flex justify-between gap-8">
-            <p id="price" >price <%="$5"%></p>
+            <p id="price" >price <%=humanized_money_with_symbol property.price%></p>
             <div class="flex gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                 <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
               </svg>
-              <p class="rating">4.29</p>
+              <p class="rating"><%=(0...50).to_a.sample/10.0%></p>
             </div>
           </div>
           <%# <div class="card-actions">

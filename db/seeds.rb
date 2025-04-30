@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 20.times do
-  Property.create!({
+  property = Property.create!({
     name: Faker::Lorem.unique.sentence(word_count: 3),
     description: Faker::Lorem.paragraph(sentence_count: 10),
     headline: Faker::Lorem.unique.sentence(word_count: 6),
@@ -16,6 +16,13 @@
     address_2: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country
+    country: Faker::Address.country,
+    price: Money.from_amount((50..100).to_a.sample, "USD")
   })
+  property1 = "property-#{rand(1..3)}.png"
+  property2 = "property-#{rand(3..5)}.png"
+  file_path1 = Rails.root.join("db/images/#{property1}")
+  file_path2 = Rails.root.join("db/images/#{property2}")
+  property.images.attach(io: File.open(file_path1), filename: property1, content_type: "image/png")
+  property.images.attach(io: File.open(file_path2), filename: property2, content_type: "image/png")
 end
