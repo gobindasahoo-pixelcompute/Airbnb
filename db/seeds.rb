@@ -7,6 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+user = User.create!(email: "suman@gmail.com", password: "namita")
 20.times do
   property = Property.create!({
     name: Faker::Lorem.unique.sentence(word_count: 3),
@@ -25,4 +26,17 @@
   file_path2 = Rails.root.join("db/images/#{property2}")
   property.images.attach(io: File.open(file_path1), filename: property1, content_type: "image/png")
   property.images.attach(io: File.open(file_path2), filename: property2, content_type: "image/png")
+  ((5..10).to_a.sample).times do
+    Review.create!(
+      content: Faker::Lorem.paragraph(sentence_count: 10),
+      cleanliness_rating: (1..5).to_a.sample,
+      accuracy_rating: (1..5).to_a.sample,
+      checking_rating: (1..5).to_a.sample,
+      communication_rating: (1..5).to_a.sample,
+      location_rating: (1..5).to_a.sample,
+      value_rating: (1..5).to_a.sample,
+      property: property,
+      user: user
+    )
+  end
 end

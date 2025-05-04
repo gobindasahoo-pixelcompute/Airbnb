@@ -1,6 +1,7 @@
 class Property < ApplicationRecord
   monetize :price_cents, allow_nil: true
-  has_many_attached :images
+  has_many_attached :images, dependent: :purge_later
+  has_many :reviews, dependent: :destroy
 
   with_options presence: true do
     validates :name
