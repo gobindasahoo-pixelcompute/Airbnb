@@ -3,7 +3,7 @@
     <!-- Heart Icon (Wishlist) -->
     <div class="absolute top-8 right-8 m-2 z-10" data-controller = "wishlist">
       <button class="btn btn-ghost btn-circle text-red-500 hover:text-red-700" data-action = "click->wishlist#updateWishListStatus">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red" class="w-6 h-6" data-wishlist-target = "heart" data-status="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red" class="w-6 h-6" data-wishlist-target = "heart" data-status="false" data-user-logged-in = "<%= user_signed_in?%>">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.682l1.318-1.364a4.5 4.5 0 116.364 6.364L12 21.5 4.318 12.682a4.5 4.5 0 010-6.364z" />
         </svg>
       </button>
