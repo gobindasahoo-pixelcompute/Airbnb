@@ -1,0 +1,38 @@
+<div class="card bg-base-100 w-full shadow-sm">
+  <figure class="px-10 pt-10 relative">
+    <!-- Heart Icon (Wishlist) -->
+    <div class="absolute top-8 right-8 m-2 z-10" data-controller = "wishlist">
+      <button class="btn btn-ghost btn-circle text-red-500 hover:text-red-700" data-action = "click->wishlist#updateWishListStatus">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red" class="w-6 h-6" data-wishlist-target = "heart" data-status="false">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.682l1.318-1.364a4.5 4.5 0 116.364 6.364L12 21.5 4.318 12.682a4.5 4.5 0 010-6.364z" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel w-64 rounded-box">
+      <% property.images.each do |image| %>
+        <div class="carousel-item w-full">
+          <%= image_tag image, class: "w-full h-48 object-cover rounded-md" %>
+        </div>
+      <% end %>
+    </div>
+  </figure>
+
+  <div class="card-body items-center text-center">
+    <h2 class="card-title"><%= property.city %>, <%= property.country %></h2>
+    <p><em><strong>Hosted</strong></em> by Gobinda</p>
+    <p><%= property.updated_at.in_time_zone.strftime("%B %d, %Y %I:%M %p") %></p>
+
+    <div class="price-rating flex justify-between gap-8 w-full">
+      <p>Price: <%= humanized_money_with_symbol(property.price) %></p>
+      <div class="flex gap-2 items-center">
+        <!-- Star Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5 text-yellow-500">
+          <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+        </svg>
+        <p><%= property.average_final_rating %></p>
+      </div>
+    </div>
+  </div>
+</div>
